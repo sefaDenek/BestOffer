@@ -1,0 +1,61 @@
+<navbar></navbar>
+
+
+<div class="container pt-100 mb-15">
+    <div class="row">
+        <div class="col-3">
+
+            <cart-summary ></cart-summary>
+
+
+
+
+
+
+
+           <category-list (category)="getCategory($event)"></category-list>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning row">
+
+                        <div class="col-md-11"> {{ selectedProduct.length }} 'tane ürün bulundu</div>
+                  
+
+                        <div class="form-inline float-right m-0 p-0 col-md-1">
+                            <select class="form-control-sm"  [value]="productsPerPage" (change)="changePageSize($any($event.target).value)">
+                                <option value="3">3 er</option>
+                                <option value="6">6 şar</option>
+                                <option value="9">9 ar</option>
+                                <option value="12">12 şer</option>
+                            </select>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+                
+            
+
+
+            </div>
+
+            <product-list [products]="products"></product-list>
+
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <div class="btn-group mx-auto ">
+                        <button 
+                        *ngFor="let page of pageNumbers"
+                        (click)="changePage(page)"  
+                        class="btn btn-outline-primary"
+                        [class.active]="page == selectedPage">
+                        {{ page }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -41,20 +41,39 @@ export class RestService {
       addProduct(product:Product) : Observable<Product>{
         return this.http.post(this.baseUrl + "products", product, {
           headers: new HttpHeaders({
-            "Authorization":`Bearer<${this.token}>`
+            "Authorization":`Bearer ${this.token}`
+          })
+        })
+      }
+
+      addCategory(category:Category) : Observable<Category>{
+        return this.http.post(this.baseUrl + "categories", category, {
+          headers: new HttpHeaders({
+            "Authorization":`Bearer ${this.token}`
           })
         })
 
       }
-
       updateProduct(product:Product) : Observable<Product>{
         return this.http.put(this.baseUrl + "products/"+ product.id, product, {
           headers: new HttpHeaders({
-            "Authorization":`Bearer<${this.token}>`
+            "Authorization":`Bearer ${this.token}`
+          })
+        })
+      }
+
+      updateCategory(category:Category) : Observable<Product>{
+        return this.http.put(this.baseUrl + "categories/"+ category.id, category, {
+          headers: new HttpHeaders({
+            "Authorization":`Bearer ${this.token}`
           })
         })
 
       }
+
+
+
+
 
       deleteProduct(product: Product): Observable<Product>{
         console.log(this.token)
@@ -64,6 +83,15 @@ export class RestService {
             })
           })
       }
+
+  deleteCategory(category:Category): Observable<Category>{
+    console.log(this.token)
+    return this.http.delete<Category>(this.baseUrl+"products/"+category.id, {
+      headers: new HttpHeaders({
+        "Authorization":`Bearer ${this.token}`
+      })
+    })
+  }
 
 
 

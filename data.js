@@ -14,8 +14,8 @@ module.exports= function(){
         ],
         categories:[
             {id:1, name:"telefon"},
-            {id:1, name:"ev eşyası"},
-            {id:1, name:"elektronik"},
+            {id:2, name:"ev eşyası"},
+            {id:3, name:"elektronik"},
 
         ],
         orders:[]

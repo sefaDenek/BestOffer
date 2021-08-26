@@ -23,10 +23,8 @@ export class ProductRepository implements OnInit {
 
 
     getProduct(id: number): Product {
-      console.log("id",id)
       let result = null;
       this.products.forEach(product => {
-        console.log(product)
         if(product.id == id) {
           result = product;
         }
@@ -58,7 +56,7 @@ export class ProductRepository implements OnInit {
 
     deleteProduct(product: Product){
       this.restService.deleteProduct(product).subscribe(p=> this.products
-          .splice(this.products.indexOf(product),1));
+          .splice(this.products.findIndex(p=> p.id === product.id),1));
 
     }
 

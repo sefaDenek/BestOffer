@@ -19,7 +19,6 @@ export class ProductFormComponent implements OnInit {
     this.editing = activeRoute.snapshot.params['mode'] == 'edit';
     if (this.editing) {
       this.product = repository.getProduct(activeRoute.snapshot.params['id']);
-      console.log(this.product);
     }
   }
 

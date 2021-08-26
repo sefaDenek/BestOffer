@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/model/auth.service';
+import {AuthService} from "../../model/auth.service";
 
 @Component({
   selector: 'app-auth',
@@ -11,8 +11,8 @@ import { AuthService } from 'src/app/model/auth.service';
 export class AuthComponent implements OnInit {
 
 
-  public username: any;
-  public password: any;
+  public username?: string;
+  public password?: string;
   public errorMessage?:string;
   constructor(private router:Router, private authService:AuthService) { }
 
@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
   }
 
   login(form:NgForm){
-    if(form.valid){
+    if(this.username!=null && this.password!=null){
       this.authService.authenticate(this.username,this.password)
       .subscribe(response => {
         if(response){

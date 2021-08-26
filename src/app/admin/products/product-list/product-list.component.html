@@ -1,0 +1,25 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of getProducts()">
+      <th><img src="/assets/img/{{ p.imgUrl }}" width="50"></th>
+      <th>{{ p.name}}</th>
+      <th>{{ p.price }} TL</th>
+      <th>
+        <button class="btn btn-warning btn-sm" [routerLink]="['/admin/main/product/edit/',p.id]"> Edit</button>
+        <button class="btn btn-danger btn-sm m-lg-1" (click)="deleteProduct(p)">Delete</button>
+
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+    <button class="btn btn-primary" routerLink="/admin/main/product/create"> Ürün Ekle</button>

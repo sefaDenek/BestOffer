@@ -7,27 +7,59 @@ import { RestService } from "./rest.service";
 export class ProductRepository implements OnInit {
     private products: Product[] = [];
 
-    constructor(private restService: RestService){ 
+    constructor(private restService: RestService){
         this.restService
         .getProducts()
-        .subscribe(products => this.products = products);
+        .subscribe(products =>{
+
+          this.products = products
+          console.log(this.products);
+        } )
     }
 
     ngOnInit() {
-       
+
     }
 
 
-    getProduct(id: number): Product | undefined {
-        return this.products.find(i=> i.id= id);
+    getProduct(id: number): Product {
+      console.log("id",id)
+      let result = null;
+      this.products.forEach(product => {
+        console.log(product)
+        if(product.id == id) {
+          result = product;
+        }
+      })
+
+      if(result == null)
+        return new Product();
+      else
+        return result;
     }
 
 
     getProducts(category: Category | undefined ): Product[]{
         if(category)
-            return this.products.filter(p=> p.category==category.name);
+            return this.products.filter(p=> p.category === category.id);
         else
-        return this.products;
+            return this.products;
+    }
+
+    saveProduct(product: Product){
+      if(product.id== null || product.id ==0){
+        this.restService.addProduct(product)
+          .subscribe(p=> this.products.push(p));
+      } else {
+        this.restService.updateProduct(product)
+          .subscribe(p=> this.products.splice(this.products.findIndex(p=> p.id == product.id),1,product));
+      }
+    }
+
+    deleteProduct(product: Product){
+      this.restService.deleteProduct(product).subscribe(p=> this.products
+          .splice(this.products.indexOf(product),1));
+
     }
 
 
